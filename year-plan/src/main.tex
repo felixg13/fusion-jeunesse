@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{pgfcalendar}
+\usepackage[british]{datetime2}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\titleformat{\section}[block]{\color{blue}\Huge\bfseries\itshape\filcenter}{}{1em}{}
+\titleformat{\subsection}[hang]{\color{gray}\LARGE\bfseries}{}{1em}{}
+\titleformat{\subsubsection}[hang]{\large\bfseries}{}{1em}{}
+
+\newcount\firstWeekCounter
+\pgfcalendardatetojulian{2024-10-07}{\firstWeekCounter}
+
+\newcounter{weekCounter}
+\setcounter{weekCounter}{1}
+
+\newcommand{\printWeekInfo}[1]{
+  \pgfcalendarjuliantodate{\numexpr\firstWeekCounter+(7*#1)-7\relax}{\myyear}{\mymonth}{\myday}
+    Week #1 - \DTMdate{\myyear-\mymonth-\myday}%
+    }
+
+\newcommand{\weekplan}[2]{
+    \subsection*{\printWeekInfo{\the\value{weekCounter}}}
+    #1
+    #2
+    \stepcounter{weekCounter}
+}
+\newcommand{\workshop}[2]{
+  \subsubsection*{#1}
+  \textit{#2}
+  }
+
+  \newcommand{\releaseWeek}[1]{
+    \subsection*{\printWeekInfo{#1}}
+  }
+
+\begin{document}
+\input{src/sections/titlepage.tex}
+
+\section{Part 1 - Tools Introduction}
+
+\weekplan
+{
+  \workshop{GamePitch 2023-2024}{Exploring last year Games and Pitching one of the game as if it was yours}
+}
+{
+  \workshop{Character Creation Competition}{Drawing 4 characters from 4 creative prompts}
+}
+
+\weekplan
+{
+  \workshop{First Contact with Construct3}{Completing the beginners-guide on the Construct3 \href{https://www.construct.net/en/tutorials/beginners-guide-construct-1}{Website}}
+}{}
+
+\weekplan
+{
+  \workshop{Intro to music creation with BeepBox}{Creating 2 songs in teams of 2 using \href{https://www.beepbox.co/}{BeepBox}}
+}{}
+
+\weekplan
+{
+  \workshop{Digital Literacy}{Learning about computer hygen and how it can improve your productivity}
+}
+{
+  \workshop{World Building}{Creating the background for creative new world from 3 creative prompts}
+}
+
+\weekplan
+{
+  \workshop{Game Design with BoomrangMan}{Implementating mechanics and Creating from a Game Design document}
+}{}
+
+\weekplan
+{
+  \workshop{First complete Game}{Follwing a tutorial to make the art, music and code of a simple labyrinth Game}
+}{}
+
+\weekplan
+{
+  \workshop{Animating a DDR Game}{Creating 4 animations for a character from week 1}
+}
+{
+  \workshop{Coding Enemy AI}{Creating autonomous Enemies}
+}
+
+\section{Part 2 - Flash Game}
+\weekplan
+
+{
+  \workshop{Flash Game 1}{Project Presentation, game concept and todo list}
+}
+{
+  \workshop{Flash Game 2}{On Paper level Design, C3 level outline and Main Character art}
+}
+
+\weekplan
+{
+  \workshop{Flash Game 3}{background art, platform/wall art, enemy mouvement and main character movement}
+}
+{
+  \workshop{Flash Game 4}{parrallax background, enemy and boss art and player, enemy, boss Attack}
+}
+
+\weekplan
+{
+  \workshop{Flash Game 5}{Story tutorial, boss art, game object art, and player + boss health bar}
+}
+{
+  \workshop{Flash Game 6}{finish game code, main player animation}
+}
+
+\weekplan
+{
+  \workshop{Flash Game 7}{Menu, Music, BugFix}
+}
+{
+  \workshop{Flash Game 8}{Play Test, Bug Fix, Github pages Release}
+}
+
+\vspace{1cm}
+\centerline{\Huge \textbf{\textit{Happy Holidays}}}
+\vspace{1cm}
+\clearpage
+\stepcounter{weekCounter}
+\stepcounter{weekCounter}
+\weekplan
+{
+  \workshop{Flash Game 9}{Prepare elevator pitch}
+}
+{
+  \workshop{Flash Game Presentation}{Flash Game presentation + Try Game}
+}
+\section{Part 3 - Introduction to final Project}
+\weekplan
+{
+  \workshop{Create a Studio}{Make a pixelArt logo, Start GDD, Roles Presentation}
+}
+{
+}
+\section{Final Project - Release Schedule}
+\releaseWeek{5}
+\end{document}
+
+\documentclass{article}
+
